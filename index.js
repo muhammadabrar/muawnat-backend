@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 var multer = require("multer");
 const mongoose = require('mongoose');
-
+const dotenv = require('dotenv').config();;
 let Candidates = require("./models/Candidates");
 let CVs = require("./models/CVs");
 
@@ -21,7 +21,7 @@ app.use("/images", express.static("images"));
 app.use(bodyParser.json());
 
 //database=============================================================
-const uri = "mongodb://localhost:27017/jobPortalForm";
+const uri = process.env.mongodburi;
 mongoose.connect(uri);
 const connection = mongoose.connection;
 connection.once("open", () => {
